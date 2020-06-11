@@ -82,4 +82,12 @@ func main() {
 	// Delete a check
 	delMsg, _ := client.Checks.Delete(check.ID)
 	fmt.Println("Deleted check, message:", delMsg)
+
+	// List all transactional checks
+	tChecks, _ := client.TransactionChecks.List()
+	fmt.Println("All transactional checks:", tChecks)
+
+	// Get details for a check
+	tdetails, _ := client.TransactionChecks.Read(tChecks[0].ID)
+	fmt.Println("Details:", tdetails)
 }

@@ -16,12 +16,13 @@ const (
 // provides a NewClient function for convenience to initialize a client
 // with default parameters.
 type Client struct {
-	APIToken     string
-	BaseURL      *url.URL
-	client       *http.Client
-	Checks       *CheckService
-	Maintenances *MaintenanceService
-	Probes       *ProbeService
+	APIToken          string
+	BaseURL           *url.URL
+	client            *http.Client
+	Checks            *CheckService
+	Maintenances      *MaintenanceService
+	Probes            *ProbeService
+	TransactionChecks *TransactionCheckService
 }
 
 // ClientConfig represents a configuration for a pingdom client.
@@ -58,6 +59,7 @@ func NewClientWithConfig(config ClientConfig) (*Client, error) {
 	c.Checks = &CheckService{client: c}
 	c.Maintenances = &MaintenanceService{client: c}
 	c.Probes = &ProbeService{client: c}
+	c.TransactionChecks = &TransactionCheckService{client: c}
 	return c, nil
 }
 
