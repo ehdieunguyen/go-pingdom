@@ -25,7 +25,7 @@ func (ts *TransactionCheckService) List(params ...map[string]string) ([]Transact
 	if len(params) == 1 {
 		param = params[0]
 	}
-	req, err := ts.client.NewRequest("GET", "/tms/check?extended_tags=true", param)
+	req, err := ts.client.NewRequest("GET", "/tms/check", param)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func (ts *TransactionCheckService) List(params ...map[string]string) ([]Transact
 // This returns type TransactionCheckResponse rather than TransactionCheck Check since the
 // pingdom API does not return a complete representation of a transaction check.
 func (ts *TransactionCheckService) Read(id int) (*TransactionCheckResponse, error) {
-	req, err := ts.client.NewRequest("GET", "/tms/check/"+strconv.Itoa(id)+"?extended_tags=true", nil)
+	req, err := ts.client.NewRequest("GET", "/tms/check/"+strconv.Itoa(id), nil)
 	if err != nil {
 		return nil, err
 	}

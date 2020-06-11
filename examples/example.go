@@ -49,7 +49,7 @@ func getConfig() credentials {
 
 func main() {
 	client, err := pingdom.NewClientWithConfig(pingdom.ClientConfig{
-		APIToken: "api_token",
+		APIToken: "fsQ8tj3CUORaWF7kdykeddAqxd0v9R2lKlflJgAZm7Ap1W6rmtSaI8sHQNfG7mbhsoWJdmE",
 	})
 	if err != nil {
 		fmt.Println("Error", err)
@@ -57,37 +57,39 @@ func main() {
 	}
 
 	// List all checks
-	checks, _ := client.Checks.List()
-	fmt.Println("All checks:", checks)
-
-	// Create a new http check
-	newCheck := pingdom.HttpCheck{Name: "Test Check", Hostname: "example.com", Resolution: 5}
-	check, _ := client.Checks.Create(&newCheck)
-	fmt.Println("Created check:", check) // {ID, Name}
-
-	// Create a new ping check
-	newPingCheck := pingdom.PingCheck{Name: "Test Ping", Hostname: "example.com", Resolution: 1}
-	pingcheck, _ := client.Checks.Create(&newPingCheck)
-	fmt.Println("Created check:", pingcheck) // {ID, Name}
-
-	// Get details for a check
-	details, _ := client.Checks.Read(check.ID)
-	fmt.Println("Details:", details)
-
-	// Update a check
-	updatedCheck := pingdom.HttpCheck{Name: "Updated Check", Hostname: "example2.com", Resolution: 5}
-	upMsg, _ := client.Checks.Update(check.ID, &updatedCheck)
-	fmt.Println("Modified check, message:", upMsg)
-
-	// Delete a check
-	delMsg, _ := client.Checks.Delete(check.ID)
-	fmt.Println("Deleted check, message:", delMsg)
+	//checks, _ := client.Checks.List()
+	//fmt.Println("All checks:", checks)
+	//
+	//// Create a new http check
+	//newCheck := pingdom.HttpCheck{Name: "Test Check", Hostname: "example.com", Resolution: 5}
+	//check, _ := client.Checks.Create(&newCheck)
+	//fmt.Println("Created check:", check) // {ID, Name}
+	//
+	//// Create a new ping check
+	//newPingCheck := pingdom.PingCheck{Name: "Test Ping", Hostname: "example.com", Resolution: 1}
+	//pingcheck, _ := client.Checks.Create(&newPingCheck)
+	//fmt.Println("Created check:", pingcheck) // {ID, Name}
+	//
+	//// Get details for a check
+	//details, _ := client.Checks.Read(check.ID)
+	//fmt.Println("Details:", details)
+	//
+	//// Update a check
+	//updatedCheck := pingdom.HttpCheck{Name: "Updated Check", Hostname: "example2.com", Resolution: 5}
+	//upMsg, _ := client.Checks.Update(check.ID, &updatedCheck)
+	//fmt.Println("Modified check, message:", upMsg)
+	//
+	//// Delete a check
+	//delMsg, _ := client.Checks.Delete(check.ID)
+	//fmt.Println("Deleted check, message:", delMsg)
 
 	// List all transactional checks
-	tChecks, _ := client.TransactionChecks.List()
+	tChecks, err := client.TransactionChecks.List()
+	fmt.Println(err)
 	fmt.Println("All transactional checks:", tChecks)
 
 	// Get details for a check
-	tdetails, _ := client.TransactionChecks.Read(tChecks[0].ID)
+	tdetails, err := client.TransactionChecks.Read(tChecks[0].ID)
+	fmt.Println(err)
 	fmt.Println("Details:", tdetails)
 }

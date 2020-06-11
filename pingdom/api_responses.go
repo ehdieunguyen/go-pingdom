@@ -169,33 +169,26 @@ type UsersResponse struct {
 
 // TransactionCheckResponse represents the JSON response for a transaction check from the Pingdom API.
 type TransactionCheckResponse struct {
-	ID                       int                           `json:"id"`
-	Active                   bool                          `json:"active"`
-	ContactIds               []int                         `json:"contact_ids"`
-	CreatedAt                int64                         `json:"created_at,omitempty"`
-	ModifiedAt               int64                         `json:"modified_at,omitempty"`
-	CustomMessage            string                        `json:"custom_message,omitempty"`
-	Interval                 int                           `json:"interval,omitempty"`
-	Name                     string                        `json:"name"`
-	Region                   string                        `json:"region,omitempty"`
-	SeverityLevel            string                        `json:"severity_level,omitempty"`
-	SendNotificationWhenDown int                           `json:"send_notification_when_down,omitempty"`
-	Status                   string                        `json:"status,omitempty"`
-	TeamIds                  []int                         `json:"team_ids"`
-	IntegrationIds           []int                         `json:"integration_ids,omitempty"`
-	Tags                     []TransactionCheckResponseTag `json:"tags,omitempty"`
-	Type                     string                        `json:"type,omitempty"`
+	ID                       int      `json:"id"`
+	Active                   bool     `json:"active"`
+	ContactIds               []int    `json:"contact_ids"`
+	CreatedAt                int64    `json:"created_at,omitempty"`
+	ModifiedAt               int64    `json:"modified_at,omitempty"`
+	CustomMessage            string   `json:"custom_message,omitempty"`
+	Interval                 int      `json:"interval,omitempty"`
+	Name                     string   `json:"name"`
+	Region                   string   `json:"region,omitempty"`
+	SeverityLevel            string   `json:"severity_level,omitempty"`
+	SendNotificationWhenDown int      `json:"send_notification_when_down,omitempty"`
+	Status                   string   `json:"status,omitempty"`
+	TeamIds                  []int    `json:"team_ids"`
+	IntegrationIds           []int    `json:"integration_ids,omitempty"`
+	Tags                     []string `json:"tags,omitempty"`
+	Type                     string   `json:"type,omitempty"`
 
 	// Improve this if needed
 	Steps    []interface{}          `json:"steps,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-}
-
-// TransactionCheckResponseTag is an optional tag that can be added to checks.
-type TransactionCheckResponseTag struct {
-	Name  string      `json:"name"`
-	Type  string      `json:"type"`
-	Count interface{} `json:"count"`
 }
 
 // UnmarshalJSON converts a byte array into a CheckResponseType.
